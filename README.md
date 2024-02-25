@@ -10,11 +10,14 @@ Escribir un programa que lea un entero positivo “n” introducido por el usuar
 
 ## Código 1   
 ```python
- barras = int(input("Introduce el número de barras vendidas que no son frescas: "))
+#pide las barras vendidas introducir un numero cualquiera
+barras = int(input("Introduce el número de barras vendidas que no son frescas: "))
+#datos de los productos
  precio = 3.49 
  descuento = 0.6
+#calcula el costo multiplicando las barras vendidas por su precio aplicando el descuento y almacena la variable
  coste = barras * precio * (1 - descuento)
-
+#imprime los costos dependiendo si es una barra fresca o no y el costo final
  print("El coste de una barra fresca es " + str(precio) + "€")
  print("El descuento sobre una barra no fresca es " + str(descuento * 100) + "%")
  print("El coste final a pagar es " + str(round(coste, 2)) + "€")
@@ -23,15 +26,20 @@ Escribir un programa que lea un entero positivo “n” introducido por el usuar
 Escribir un programa que pregunte al usuario por el número de horas trabajadas y el costo por hora. Después debe mostrar por pantalla la paga que le corresponde.
 ## Código 2   
 ```python
+#se coloca mumero de horas trabajadas, cualquier numero.Usamos int convirtiendolo en un intero y almacena la variable en horas
 horas = int(input("Introduce el número de horas trabajadas: "))
+#agrega el precio que se paga por hora ahora guardamos la variable en costo
 costo = int(input("Introduce el costo por hora: "))
+#calculamos la paga con una multiplicacion
 paga=horas*costo
+#imprime la paga final y str(paga) convierte el valor numerico para concatenarse con otras cadenas
 print("El pago final a pagar es " + str(paga))
 ```
 # Problema 3
 Crea una lista de nombre + sueldo por hora + horas trabajadas de al menos seis operadores.Imprime el nombre y el sueldo a pagar de cada operador.
 ## Código 3  
 ```python
+#se ingresan los datos de operadores, horas que trabajan y cuanto ganan por hora.
  operadores = [
     {"nombre": "Jose", "sueldo_por_hora": 15, "horas_trabajadas": 8},
     {"nombre": "Ivan", "sueldo_por_hora": 20, "horas_trabajadas": 7},
@@ -137,41 +145,43 @@ Flecha hacia la izquierda: ← (U+2190)
 Flecha hacia la derecha: → (U+2192)
 ## Código 6  
 ```python
+#librerias donde random=numeros aleatorios y numpy=operaciones matriciales 
 import random
 import numpy as np
 
-# Crear la matriz
+# Crear la matriz cuadrada de 5*5 y con np.full llena el caracter "o"
 size = 5
 matrix = np.full((size, size), 'o')
 
-# Colocar obstáculos aleatorios
+# bucle para colocar obstáculos aleatorios
 for _ in range(size):
-    i, j = random.randint(0, size-1), random.randint(0, size-1)
-    matrix[i][j] = 'X'
+    i, j = random.randint(0, size-1), random.randint(0, size-1) #genera cordenadas aleatorias
+    matrix[i][j] = 'X' #es para colocar un obstaculo y tapar el camino
 
-# Posición inicial del robot
+# Posición inicial del robot comenzando por la esquina derecha de arriba
 start = (0, 0)
 
-# Posición final del robot
+# Posición final del robot en la esquina derecha de abajo
 end = (size-1, size-1)
 
-# Función para encontrar el camino
+# para encontrar el camino usamos find_path tomando la matriz con la posicion inicial y final dando los pasos que toma el robot 
 def find_path(matrix, start, end):
     directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]  # Derecha, Abajo, Izquierda, Arriba
     arrows = ['→', '↓', '←', '↑']
-    visited = set()
-    stack = [(start, [])]
-    while stack:
-        (x, y), path = stack.pop()
-        if (x, y) not in visited:
-            visited.add((x, y))
-            if (x, y) == end:
-                return path
-            for (dx, dy), arrow in zip(directions, arrows):
-                nx, ny = x + dx, y + dy
-                if 0 <= nx < size and 0 <= ny < size and matrix[nx][ny] != 'X':
-                    stack.append(((nx, ny), path + [(nx, ny, arrow)]))
-    return None
+    visited = set() #para marcar las celdas donde pasa el robot
+    stack = [(start, [])] #crea una lista con la posicion inicial y una lista vacia para ver el camino recorrido
+#bluqcle que sirve para ejecutarse mientras tengamos algun elemento 
+while stack:
+        (x, y), path = stack.pop() #muestra la poscicion y el camino desde el principio
+        if (x, y) not in visited:#para confirmar si la poscicion actual no se ha visitado
+            visited.add((x, y)) #agrega poscicion actual a las visitadas
+            if (x, y) == end:#verifica si el robot a llegado al final
+                return path #devuelve el camino recorrido para ver si a llegado a la poscicion final
+            for (dx, dy), arrow in zip(directions, arrows):#verifica las direcciones posibles y flechas asociadas
+                nx, ny = x + dx, y + dy #calcula las nuevas cordenadas segun la direccion dada
+                if 0 <= nx < size and 0 <= ny < size and matrix[nx][ny] != 'X': #verifica si las nuevas cordenadas estan en la matriz y si hay o no obstaculos
+                    stack.append(((nx, ny), path + [(nx, ny, arrow)]))#agrega las nuevas cordenadas 
+    return None 
 
 # Encontrar el camino
 path = find_path(matrix, start, end)
