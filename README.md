@@ -103,19 +103,21 @@ import random
 # Generar un número aleatorio entre 1 y 10
 numero_secreto = random.randint(1, 10)
 
-intentos = 0
+intentos = 0 #para ver cuantos intentos se realizan al adivinar el numero
 
+#bucle infinito
 while True:
-    numero_usuario = int(input("Adivina el número secreto entre 1 y 10: "))
-    intentos += 1
+    numero_usuario = int(input("Adivina el número secreto entre 1 y 10: ")) #introducir un  numero y convertios a un entero con int y lo almacenamos en "num_usuario"
+    intentos += 1 #contador, agrega los intentos
 
+#compara el numero dado y envia un mensaje dependiendo si el numero es muy grande o pequeño o es el correcto
     if numero_usuario < numero_secreto:
         print("Demasiado bajo, intenta de nuevo.")
     elif numero_usuario > numero_secreto:
         print("Demasiado alto, intenta de nuevo.")
     else:
         print(f"¡Bien hecho! Has adivinado el número secreto en {intentos} intentos.")
-        break
+        break #para romper el bucle infinito y terminar el juego
 ```
 # Problema 6
 Robot exploradorEl programa debe generar una matriz de al menos 5x5.El robot inicia su camino en la posición (0,0) de la matriz y debe salir en la posición (4,4) o lamáxima posición si se cambia el tamaño de matriz.El numero y la posición de los obstáculos es aleatoria.El robot solo puede avanzar, girar a la izquierda o a la derecha para buscar un camino libre, en eleventual caso que el robot no pueda salir debe imprimir en pantalla “Imposible llegar al destino”En caso de que el robot llegue a su destino final deberá imprimir el mapa, con los espacios libres yobstáculos de la siguiente forma X obstáculo o libre
