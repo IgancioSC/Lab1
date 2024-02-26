@@ -2,6 +2,7 @@
 Reporte de la primer practica de LRT4102 
 
 Python es un lenguaje de programación de alto nivel, interpretado y orientado a objetos, fue diseñado por Guido van Rossum en 1989 con el objetivo de ser un lenguaje fácil de leer y eficiente para el desarrollo de software, es de facil interpretacion ya que el código se ejecuta línea por línea, lo que facilita la depuración y hace que el lenguaje sea ideal para el aprendizaje. 
+
 EJERCICIOS A DESARROLLAR 
 # PROBLEMA 1
 Escribir un programa que lea un entero positivo “n” introducido por el usuario y después muestreen pantalla la suma de todos los enteros desde 1 hasta n . La suma de los primeros enterospositivos puede ser calculada de la siguiente forma:
